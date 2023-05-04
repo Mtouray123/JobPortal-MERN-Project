@@ -1,7 +1,13 @@
-
+import SubmitJob from "../components/submitJob";
 
 function NewOrderPage() {
-    return <h1>NewOrderPage</h1>
+    return (
+      <>
+      <h1>NewJobPage</h1>
+      <SubmitJob />
+      </>  
+
+    )
 }
 
 
