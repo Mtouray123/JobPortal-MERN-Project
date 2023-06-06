@@ -17,6 +17,7 @@ function SubmitJob() {
         salary: jobSalary,
       });
       console.log(response);
+      
     } catch (error) {
       console.log(error);
     }
