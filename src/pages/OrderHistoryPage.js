@@ -20,11 +20,26 @@ function OrderHistoryPage() {
     setJobs(jobs.filter((job) => job._id !== id));
   };
 
-  const handleUpdateJob = async (id, updatedJob) => {
-    const response = await axios.put(`/api/jobs/${id}`, updatedJob);
-    setJobs(jobs.map((job) => (job._id === id ? response.data : job)));
+  const handleUpdateJob = async (id, updatedJobData) => {
+    try {
+      const response = await axios.put(`/api/jobs/${id}`, updatedJobData);
+      const updatedJob = response.data;
+      setJobs((prevJobs) => {
+        return prevJobs.map((job) => {
+          if (job._id === id) {
+            return { ...job, ...updatedJob };
+          } else {
+            return job;
+          }
+        });
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
-
+  
+  
+  
   const handleShowJobApplicantForm = (job) => {
     setUpdatedJob(job);
     setJobApplicantFormVisible(true);
